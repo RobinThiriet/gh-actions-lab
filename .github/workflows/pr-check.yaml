@@ -1,24 +1,16 @@
-# name : définit le nom du workflow affiché dans l’onglet Actions
-name: "Workflow d’initiation"
+name: PR Check
 
-# on : définit l’événement qui déclenche le workflow
-on: pull_request
+on:
+  pull_request:
+    branches:
+      - main
 
-# jobs : contient la liste des jobs à exécuter
 jobs:
-  # Nom technique du job
-  saluer-le-monde:
-    # runs-on : définit l’environnement d’exécution du job
+  afficher-infos-pr:
     runs-on: ubuntu-latest
 
-    # steps : contient les étapes exécutées dans le job
     steps:
-      - name: Afficher un message de bienvenue
-        # run : exécute une commande shell
-        run: echo "Bonjour depuis GitHub Actions !"
-
-      - name: Afficher la date du jour
-        run: date
-
-      - name: Afficher l’acteur GitHub
-        run: echo "Workflow déclenché par ${{ github.actor }}"
+      - name: Afficher le numéro et l’auteur de la PR
+        run: |
+          echo "Numéro de PR : ${{ github.event.pull_request.number }}"
+          echo "Auteur de la PR : ${{ github.event.pull_request.user.login }}"

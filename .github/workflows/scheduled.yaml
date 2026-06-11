@@ -1,0 +1,28 @@
+name: Scheduled Workflow
+
+on:
+  schedule:
+    - cron: "0 9 * * 1-5"
+
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: "Environnement cible"
+        required: true
+        default: dev
+        type: choice
+        options:
+          - dev
+          - staging
+          - prod
+
+jobs:
+  tache-planifiee:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Afficher la date d’exécution
+        run: date
+
+      - name: Afficher l’environnement sélectionné
+        run: echo "Environnement sélectionné : ${{ github.event.inputs.environment || 'dev' }}"
