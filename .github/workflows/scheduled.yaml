@@ -4,18 +4,6 @@ on:
   schedule:
     - cron: "0 9 * * 1-5"
 
-  workflow_dispatch:
-    inputs:
-      environment:
-        description: "Environnement cible"
-        required: true
-        default: dev
-        type: choice
-        options:
-          - dev
-          - staging
-          - prod
-
 jobs:
   tache-planifiee:
     runs-on: ubuntu-latest
