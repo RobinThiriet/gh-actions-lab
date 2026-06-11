@@ -21,8 +21,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Afficher la date d’exécution
+      - name: Afficher la date d exécution
         run: date
 
       - name: Afficher l’environnement sélectionné
-        run: echo "Environnement sélectionné : ${{ github.event.inputs.environment || 'dev' }}"
+        run: |
+          echo "Environnement sélectionné : ${{ inputs.environment || 'dev' }}"
