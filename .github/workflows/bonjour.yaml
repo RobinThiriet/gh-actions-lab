@@ -1,11 +1,24 @@
-name: Bonjour
+# name : définit le nom du workflow affiché dans l’onglet Actions
+name: "Workflow d’initiation"
 
+# on : définit l’événement qui déclenche le workflow
 on: push
 
+# jobs : contient la liste des jobs à exécuter
 jobs:
-  hello:
+  # Nom technique du job
+  saluer-le-monde:
+    # runs-on : définit l’environnement d’exécution du job
     runs-on: ubuntu-latest
 
+    # steps : contient les étapes exécutées dans le job
     steps:
-      - name: Afficher un message
+      - name: Afficher un message de bienvenue
+        # run : exécute une commande shell
         run: echo "Bonjour depuis GitHub Actions !"
+
+      - name: Afficher la date du jour
+        run: date
+
+      - name: Afficher l’acteur GitHub
+        run: echo "Workflow déclenché par ${{ github.actor }}"
